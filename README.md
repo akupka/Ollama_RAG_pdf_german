@@ -22,3 +22,5 @@ chroma.delete_collection("buildragwithpython")
 beim ersten start deaktivieren oder auch sonst wenn man die Daten nicht löschen möchte
 
 Bei der Streamlit kann man verschiedene Ollama Modelle ausprobieren
+
+zu 3. pdf Dateien sind z.T. zickig, hier ist absichtlich ein Zwischenschritt damit man die txt überpüfen kann ob wirklich alle notwendigen Inhalte aus der pdf nach txt umgewandelt wurden.
