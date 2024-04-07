@@ -1,0 +1,40 @@
+Spezifikation Verzeichnisdienst
+REST- Die REST-Response enthält den HTTP-Statuscode.
+Response Im Fehlerfall wird ein HTTP-Statuscode
+empfangen empfangen.
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet
+(TCP, HTTP, TLS).
+Fehler bei der Verarbeitung des REST Requests werden als HTTP-
+Statuscode versendet.
+[<=]
+4.3.5 Operation get_Directory_FA-Attributes
+Diese Operation liest einen Fachdatensatz.
+4.3.5.1 Umsetzung REST
+A_21464 - VZD, Umsetzung get_Directory_FA-Attributes (REST)
+Der VZD MUSS nach folgenden Vorgaben die Operation get_Directory_FA-
+Attributes implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request mit einem HTTP-Statuscode beendet:
+HTTP-Statuscode: 404
+2. Ein nicht existierender Fachdatensatz zur Telematik-ID führt zur Rückgabe von
+HTTP-Statuscode: 404 im Response.
+[<=]
+4.3.5.2 Nutzung REST
+A_21465 - FAD, TUC_VZD_0015 “get_Directory_FA-Attributes (REST)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0015 “get_Directory_FA-Attributes”
+gemäß Tabelle Tab_TUC_VZD_0015 umsetzen.
+Tabelle 34: Tab_TUC_VZD_0015
+Name get_Directory_FA-Attributes
+Beschreibung Mit dieser Operation wird ein Fachdaten-Eintrag gelesen.
+Vorbedingungen Keine.
+Eingangsdaten REST-Request „get_Directory_FA-Attributes“
+Komponenten VZD, FAD
+Ausgangsdaten REST-Response mit den Fachdaten
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Falls noch keine TLS-Verbindung besteht, wird
+Verbindung eine aufgebaut.
+Der FAD authentisiert sich mit ID.FD.TLS-C.
+REST-Request Der FAD ruft die REST-Operation
+senden get_Directory_FA-Attributes auf.
+gemSpec_VZD_V1.docx Spezifikation Seite 40 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

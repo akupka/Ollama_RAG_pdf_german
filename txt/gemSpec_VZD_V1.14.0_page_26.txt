@@ -1,0 +1,52 @@
+Spezifikation Verzeichnisdienst
+[<=]
+TIP1-A_5584 - VZD, Änderung nur durch registrierte FAD
+Der Anbieter des VZD MUSS sicherstellen, dass Fachdaten eines Dienstes nur durch einen
+beim VZD für diesen Dienst registrierten Fachdienst erzeugt, gelöscht und geändert
+werden können.
+[<=]
+Dazu wird bei der Registrierung eine FAD zugeordnet. Unter dieser FAD werden die
+Fachdaten für den jeweiligen Dienst im VZD abgelegt. Die Zuordnung der FAD zu dem
+Dienst wird bei Aufruf jeder Operation von Schnittstelle
+I_Directory_Application_Maintenance durch den VZD geprüft (z.B. anhand des TLS-
+Client-Zertifikats oder OAuth2 Tokens).
+TIP1-A_5585 - VZD, I_Directory_Application_Maintenance, TLS-gesicherte
+Verbindung
+Der VZD MUSS die Schnittstelle I_Directory_Application_Maintenance durch Verwendung
+von TLS mit beidseitiger Authentisierung sichern.
+Der VZD muss sich mit der Identität ID.ZD.TLS-S authentisieren.
+Der VZD muss das vom FAD übergebene AUT-Zertifikat C.FD.TLS-C hinsichtlich OCSP
+Gültigkeit und Übereinstimmung mit einem Zertifikat eines zur Nutzung dieser
+Schnittstelle registrierten Fachdienstes prüfen. Bei negativem Ergebnis wird der
+Verbindungsaufbau abgebrochen.
+[<=]
+TIP1-A_5586-01 - VZD, I_Directory_Application_Maintenance, Webservice und
+LDAPv3
+Der VZD MUSS die Schnittstelle I_Directory_Application_Maintenance als Webservice
+(SOAP und REST über HTTPS) und als LDPv3 über LDAPS implementieren. Der
+Webservice (SOAP) wird durch die Dokumente DirectoryApplicationMaintenance.wsdl und
+DirectoryApplicationMaintenance.xsd definiert. Der Webservice (REST) wird durch die
+[Directory_Application_Maintenance.yaml] Datei definiert. Die LDAPv3-Attribute sind in
+dem Informationsmodell Abb_VZD_logisches_Datenmodell beschrieben.
+[<=]
+TIP1-A_5587 - VZD, Implementierung der LDAPv3 Schnittstelle
+Der VZD MUSS die Schnittstelle I_Directory_Application_Maintenance gemäß den LDAPv3
+Standards [RFC4510], [RFC4511], [RFC4512], [RFC4513], [RFC4514], [RFC4515],
+[RFC4516], [RFC4517], [RFC4518], [RFC4519], [RFC4520], [RFC4522] und [RFC4523]
+implementieren.
+[<=]
+TIP1-A_5588 - FAD, I_Directory_Application_Maintenance, Nutzung LDAP v3
+oder Webservice
+Ein FAD, der Fachdaten im VZD verwalten will, MUSS entweder die Webservice- oder die
+LDAPv3-Schnittstelle nutzen.
+[<=]
+TIP1-A_5589 - FAD, Implementierung der LDAPv3 Schnittstelle
+Der FAD, der die LDAPv3-Schnittstelle I_Directory_Application_Maintenance des VZD
+nutzt, MUSS diese Schnittstelle gemäß den LDAPv3 Standards [RFC4510], [RFC4511],
+[RFC4512], [RFC4513], [RFC4514], [RFC4515], [RFC4516], [RFC4517], [RFC4518],
+[RFC4519], [RFC4520], [RFC4522] und [RFC4523] implementieren. Die LDAPv3-Attribute
+sind in dem Informationsmodell Abb_VZD_logisches_Datenmodell beschrieben.
+[<=]
+A_21466 - VZD, I_Directory_Application_Maintenance, OAuth2 Dienst
+gemSpec_VZD_V1.docx Spezifikation Seite 26 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

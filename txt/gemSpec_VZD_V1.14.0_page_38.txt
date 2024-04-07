@@ -1,0 +1,41 @@
+Spezifikation Verzeichnisdienst
+VZD:KOM-LE-EMail-Address mail
+VZD:version KOM-LE-Version
+[<=]
+4.3.4.3 Umsetzung LDAPv3
+TIP1-A_5602 - VZD, Umsetzung modify_Directory_FA-Attributes (LDAPv3)
+Der VZD MUSS nach folgenden Vorgaben die Operation modify_Directory_FA-Attributes
+implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request beendet.
+2. Ein bereits zur Telematik-ID gehörender Fachdatensatz wird geändert.
+3. Der FAD darf nur die zu seinem Dienst gehörenden Fachdaten ändern.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0011 verwendet werden.
+[<=]
+4.3.4.4 Nutzung LDAPv3
+TIP1-A_5603 - FAD, TUC_VZD_0011 “modify_Directory_FA-Attributes
+(LDAPv3)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0011 „modify_Directory_FA-
+Attributes(LDAPv3)” gemäß Tabelle Tab_TUC_VZD_0011 unterstützen.
+Tabelle 21: Tab_TUC_VZD_0011
+Name modify_Directory_FA-Attributes(LDAPv3)
+Beschreibung Mit dieser Operation werden Fachdaten zu einem
+bestehenden Eintrag geändert.
+Vorbedingungen Der LDAPS-Verbindungsaufbau muss erfolgreich
+durchgeführt sein.
+Eingangsdaten Modify-Request gemäß [RFC4511]#4.6 und
+Informationsmodell (Abb_VZD_logisches_Datenmodell)
+Komponenten LDAP Client des FAD, Verzeichnisdienst
+Ausgangsdaten gemäß [RFC4511]#4.6
+Standardablauf Aktion Beschreibung
+Modify Der LDAP Client des FAD sendet den
+Request modify-Request gemäß [RFC4511]#4.6 an
+senden den VZD. Die RFCs [RFC4510], [RFC4511],
+[RFC4513], [RFC4514], [RFC4515],
+[RFC4516], [RFC4519] und [RFC4522]
+müssen unterstützt werden.
+Modify Der LDAP Client empfängt das Ergebnis der
+Response Operation gemäß [RFC4511]#4.6.
+empfangen
+gemSpec_VZD_V1.docx Spezifikation Seite 38 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

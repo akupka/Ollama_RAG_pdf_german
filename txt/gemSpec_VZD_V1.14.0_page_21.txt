@@ -1,0 +1,46 @@
+Spezifikation Verzeichnisdienst
+2. Es wird eine SOAP Response VZD:readResponseMsg aus dem kompletten Eintrag
+(Basisdaten + Fachdaten) gemäßTab_VZD_Daten-Transformation
+und Tab_VZD_Datenbeschreibung erzeugt.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0003 verwendet werden.
+[<=]
+4.2.2.2 Nutzung
+TIP1-A_5578 - Nutzer der Schnittstelle, TUC_VZD_0003 „read_Directory_Entry”
+Der Nutzer der Schnittstelle MUSS den technischen Use Case TUC_VZD_0003
+„read_Directory_Entry” gemäß Tabelle Tab_TUC_VZD_0003 umsetzen. Der Webservice
+wird durch die Dokumente DirectoryMaintenance.wsdl und DirectoryMaintenance.xsd
+definiert.
+Die SOAP-Response ist gemäß Tabelle Tab_VZD_Datenbeschreibung mit den zur
+Telematik-ID gehörenden Daten aus dem VZD ausgefüllt.
+Tabelle 7: Tab_TUC_VZD_0003
+Name TUC_VZD_0003 „read_Directory_Entry”
+Beschreibung Diese Operation liest einen vollständigen Eintrag aus dem
+VZD aus.
+Vorbedingungen Keine
+Eingangsdaten SOAP-Request „readDirectoryEntry“
+Komponenten Nutzer der Schnittstelle, Verzeichnisdienst
+Ausgangsdaten SOAP-Response „readResponseMsg“
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Wenn noch keine Verbindung besteht
+Verbindung initiiert der Nutzer der Schnittstelle den
+Verbindungsaufbau.
+Der Nutzer der Schnittstelle authentisiert
+sich mit dem AUT-Zertifikat C.FD.TLS-C.
+SOAP- Der Nutzer der Schnittstelle ruft die SOAP-
+Request Operation VZD:readDirectoryEntry auf.
+senden
+SOAP- Die SOAP-Response VZD:readResponseMsg
+Response mit allen Basisdaten wird empfangen.
+empfangen
+Varianten/Alternativen keine
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen
+verwendet (TCP, HTTP, TLS)
+Fehler bei der Verarbeitung des SOAP Requests werden als
+gematik SOAP-Fault versendet:
+faultcode 4221, faultstring: Operation fehlerhaft
+ausgeführt, Basisdaten konnten nicht gelesen werden
+(Fehler im Verzeichnisdienst)
+faultcode 4312, faultstring: Basisdaten konnten nicht
+gefunden werden
+gemSpec_VZD_V1.docx Spezifikation Seite 21 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

@@ -1,0 +1,44 @@
+Spezifikation Verzeichnisdienst
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Wenn noch keine Verbindung besteht
+Verbindung initiiert der Nutzer der Schnittstelle den
+Verbindungsaufbau.
+Der Nutzer der Schnittstelle authentisiert
+sich mit dem AUT-Zertifikat C.FD.TLS-C.
+SOAP- Der Nutzer der Schnittstelle ruft die SOAP-
+Request Operation VZD:modifyDirectoryEntry auf.
+senden
+SOAP- Die SOAP-Response VZD:responseMsg mit
+Response dem VZD:status wird empfangen.
+empfangen
+Varianten/Alternativen keine
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen
+verwendet (TCP, HTTP, TLS)
+Fehler bei der Verarbeitung des SOAP Requests werden als
+gematik SOAP-Fault versendet:
+faultcode 4231, faultstring: Operation fehlerhaft
+ausgeführt, Basisdaten konnten nicht modifiziert werden
+(Fehler im Verzeichnisdienst)
+faultcode 4312, faultstring: Basisdaten konnten nicht
+gefunden werden
+faultcode 4202, faultstring: SOAP Request enthält Fehler
+Erkannte Fehler auf Transportprotokollebene müssen auf
+gematik SOAP Faults (Code 6 aus Tabelle Tab_Gen_Fehler
+aus [gemSpec_OM]) abgebildet werden. Zusätzlich
+müssen die generischen gematik SOAP-Faults
+Code 2: Verbindung zurückgewiesen
+Code 3: Nachrichtenschema fehlerhaft
+Code 4: Version Nachrichtenschema fehlerhaft
+unterstützt werden.
+[<=]
+4.2.4 Operation delete_Directory_Entry
+Diese Operation löscht einen bestehenden Datensatz im LDAP Verzeichnis.
+4.2.4.1 Umsetzung
+TIP1-A_5581 - VZD, Umsetzung delete_Directory_Entry
+Der VZD MUSS nach folgenden Vorgaben die Operation
+I_Directory_Maintenance::delete_Directory_Entry implementieren:
+1. Ein zur Telematik-ID gehörender vollständiger Eintrag gelöscht.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0005 verwendet werden.
+[<=]
+gemSpec_VZD_V1.docx Spezifikation Seite 23 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

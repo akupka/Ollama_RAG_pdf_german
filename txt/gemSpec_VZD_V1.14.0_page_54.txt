@@ -1,0 +1,42 @@
+Spezifikation Verzeichnisdienst
+Eingangsdaten REST-Request POST /DirectoryEntries/{uid}/Certificates
+operationId: add_Directory_Entry_Certificate (siehe
+DirectoryAdministration.yaml)
+Parameter Beschreibung
+uid Die „uid“ identifiziert den
+Verzeichnisdienst_Eintrag
+(Abb_VZD_logisches_Datenmodell) an welchen
+der Zertifikatseintrag angehangen wird.
+userCertificate Muss angegeben werden und enthält das
+Zertifikat.
+usage Kann optional belegt werden.
+description Kann optional belegt werden.
+Komponenten Nutzer der Schnittstelle, Verzeichnisdienst
+Ausgangsdaten REST-Response mit dem Distinguished Name (dn) von dem erzeugten
+Certificate-Eintrag.
+Ablauf Der VZD übernimmt entsprechend Tab_VZD_Datenbeschreibung Attribute
+aus dem Zertifikat und trägt die übergebenen Parameter in den
+Zertifikatseintrag ein. Der Distinguished Name (dn) von dem erzeugten
+Certificate wird vom Verzeichnisdienst gefüllt und über dn.uid mit dem
+übergeordneten Verzeichnisdienst_Eintrag verknüpft.
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet (TCP,
+HTTP, TLS) und in DirectoryAdministration.yaml mit spezifischen
+Fehlerbeschreibungen ergänzt.
+[<=]
+4.6.1.3.2 GET
+Diese Operation liest Zertifikatseinträge aus dem LDAP-Verzeichnis.
+A_18453-01 - VZD, I_Directory_Administration, read_Directory_Certificates
+Der VZD MUSS Operation „read_Directory_Certificates” gemäß Tabelle Tab_VZD
+„read_Directory_Certificates” umsetzen.
+Tabelle 29: Tab_VZD „read_Directory_Certificates”
+Name read_Directory_Certificates
+Beschreibung Diese Operation ermöglicht die Suche und das Lesen von
+Zertifikatseinträgen (Certificate in
+Abb_VZD_logisches_Datenmodell) im LDAP-Verzeichnis.
+Eingangsdaten REST-Request GET /DirectoryEntries/Certificates
+operationId: read_Directory_Certificates (siehe
+DirectoryAdministration.yaml)
+Mindestens ein Filterparameter muss angegeben werden.
+Parameter Beschreibung
+gemSpec_VZD_V1.docx Spezifikation Seite 54 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

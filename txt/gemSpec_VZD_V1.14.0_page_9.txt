@@ -1,0 +1,45 @@
+Spezifikation Verzeichnisdienst
+3 Übergreifende Festlegungen
+3.1 IT-Sicherheit und Datenschutz
+TIP1-A_5546-01 - VZD, Integritäts- u. Authentizitätsschutz
+Der Anbieter des VZD MUSS die Integrität und Authentizität der im VZD gespeicherten
+Daten gemäß den Richtlinien des Bundesamtes für Sicherheit in der Informationstechnik
+für allgemeine Verzeichnisdienste, [BSI APP.2.1], implementieren.[<=]
+TIP1-A_5547-01 - VZD, Löschen ungültiger Zertifikate
+Der VZD MUSS täglich die gespeicherten Zertifikate nach Ablaufdatum (TUC_PKI_002
+„Gültigkeitsprüfung des Zertifikats“) und Status (TUC_PKI_006 "OCSP-Abfrage) prüfen.
+Ungültige Zertifikate werden (inklusive der gesamten Zertifikatsstruktur "Certificate"
+entsprechend Abb_VZD_logisches_Datenmodell) sofort gelöscht. Ein Eintrag ohne gültige
+Zertifikate wird nach einem Jahr gelöscht und darf nicht durch eine Anfrage über die
+Operation search_Directory der Schnittstelle I_Directory_Query gefunden werden.
+[<=]
+Zum Beispiel dürfen gültige RU-/TU-Zertifikate nicht in der PU akzeptiert werden. Die
+Prüfung über TUC_PKI_018 berücksichtigt entsprechend
+dem initialisiertenVertrauensanker (aus der jeweiligen Umgebung) die Umgebung.
+A_21808 - VZD, Hinzufügen von professionOID und entryType in die Basisdaten
+Der VZD MUSS beim Hinzufügen von Zertifikaten prüfen, ob der Wert der enthaltenen
+professionOID bzw. entryType schon in den Basisdaten vorhanden ist. Falls nicht, MUSS
+der VZD diese professionOID bzw. entryType zu den existierenden Basisdaten
+hinzufügen.[<=]
+A_21809 - VZD, Löschen von professionOID und entryType aus den Basisdaten
+Der VZD MUSS gewährleisten, dass nach dem Löschen von Zertifikaten für die Attribute
+professionOID und entryType in den Basisdaten nur Werte aus den verbleibenden
+Zertifikaten erhalten bleiben.[<=]
+TIP1-A_5548 - VZD, Protokollierung der Änderungsoperationen
+Der VZD MUSS Änderungen der Verzeichnisdiensteinträge protokollieren und muss sie 6
+Monate zur Verfügung halten.
+[<=]
+6 Monate ist die maximale Nachweistiefe ohne in den Bereich der
+Vorratsdatenspeicherung zu kommen.
+TIP1-A_5549 - VZD, Keine Leseprofilbildung
+Der VZD DARF Suchanfragen NICHT speichern oder protokollieren.
+[<=]
+TIP1-A_5550 - VZD, Keine Kopien von gelöschten Daten
+Der VZD DARF von gelöschten Daten KEINE Kopien speichern.
+[<=]
+TIP1-A_5551 - VZD, Sicher gegen Datenverlust
+Der Anbieter des VZD MUSS den Dienst gegen Datenverlust absichern.
+[<=]
+TIP1-A_5552 - VZD, Begrenzung der Suchergebnisse
+gemSpec_VZD_V1.docx Spezifikation Seite 9 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

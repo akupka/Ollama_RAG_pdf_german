@@ -1,0 +1,39 @@
+Spezifikation Verzeichnisdienst
+Eingangsdaten REST-Request GET /
+operationId: getInfo (siehe DirectoryApplicationMaintenance.yaml)
+Parameter Beschreibung
+keine -
+Komponenten Nutzer der Schnittstelle
+Ausgangsdaten REST-Response mit Metadaten (InfoObject).
+Ablauf Der VZD liefert die Metadaten der Schnittstelle in der
+Datenstruktur InfoObject zurück.
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet
+(TCP, HTTP, TLS) und in DirectoryApplicationMaintenance.yaml mit
+spezifischen Fehlerbeschreibungen ergänzt.
+[<=]
+4.3.2 Operation add_Directory_FA-Attributes
+Diese Operation legt einen neuen Fachdatensatz an oder überschreibt einen bestehenden
+fachdienstspezifischen Datensatz.
+Voraussetzung: Die Fachdaten müssen einem Basisdateneintrag zuordenbar sein.
+4.3.2.1 Umsetzung SOAP
+TIP1-A_5590 - VZD, Umsetzung add_Directory_FA-Attributes (SOAP)
+Der VZD MUSS nach folgenden Vorgaben die Operation add_Directory_FA-Attributes
+implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request mit einem gematik SOAP-Fault beendet:
+faultcode: 4312,
+faultstring: Basisdaten konnten nicht gefunden werden.
+2. Ein bereits zur Telematik-ID gehörender Fachdatensatz wird gelöscht und neu
+angelegt.
+3. Ein noch nicht existierender Fachdatensatz zur Telematik-ID wird im LDAP
+Directory neu angelegt.
+4. Die Daten aus dem SOAP Request werden gemäß
+VZD_TAB_I_Directory_Application_Maintenance_Add_Mapping zum
+Basisdatensatz hinzugefügt.
+Tabelle 12: VZD_TAB_I_Directory_Application_Maintenance_Add_Mapping
+SOAP-Request Element LDAP-Directory
+Basisdatensatz Attribut
+VZD:timestamp wird nicht in das LDAP-Directory eingetragen
+VZD:Telematik-ID
+gemSpec_VZD_V1.docx Spezifikation Seite 28 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

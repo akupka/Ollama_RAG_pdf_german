@@ -1,0 +1,42 @@
+Spezifikation Verzeichnisdienst
+4 Funktionsmerkmale
+Der VZD beinhaltet alle serverseitigen Anteile des Basisdienstes Verzeichnis_Identitäten
+gemäß [gemKPT_Arch_TIP]. Dazu zählen die Speicherung der Einträge von
+Leistungserbringern und Institutionen mit allen definierten Attributen sowie die
+Speicherung von Fachdaten durch FAD. Mit einer LDAP-Suchanfrage können Clients und
+FAD Basis- und Fachdaten abfragen (z. B. X.509-Zertifikate).
+Einträge des VZD werden durch berechtigte Benutzer sowie durch berechtigte FAD
+erstellt und gepflegt.
+TIP1-A_5564 - VZD, Festlegung der Schnittstellen
+Der VZD MUSS die Schnittstellen gemäß Tabelle Tab_PT_VZD_Schnittstellen
+implementieren („bereitgestellte“ Schnittstellen) und nutzen („benötigte“ Schnittstellen).
+Tabelle 1: Tab_PT_VZD_Schnittstellen
+Schnittstelle bereitgestellt Bemerkung
+/ benötigt
+I_Directory_Query bereitgestellt
+I_Directory_Maintenance bereitgestellt
+I_Directory_Application_Maintenance bereitgestellt
+I_Directory_Administration bereitgestellt
+I_IP_Transport benötigt Definition in [gemSpec_Net]
+I_DNS_Name_Resolution benötigt Definition in [gemSpec_Net]
+I_NTP_Time_Information benötigt Definition in [gemSpec_Net]
+I_OCSP_Status_Information benötigt Definition in [gemSpec_PKI]
+I_TSL_Download benötigt Definition in [gemSpec_TSL]
+[<=]
+A_22361 - VZD, Filtermöglichkeiten in Leseoperationen
+Der VZD MUSS für die Leseoperationen read_Directory_Entry
+und read_Directory_Entry_for_Sync der Schnittstellen I_Directory_Administration
+und I_Directory_Application_Maintenance die folgenden Filtermöglichkeiten unterstützen:
+• Suche mit Wildcard "*" in den Parametern
+- givenName
+- sn
+- cn
+- displayName
+- streetAddress
+- postalCode
+- countryCode
+- localityName
+- stateOrProvinceName
+- title
+gemSpec_VZD_V1.docx Spezifikation Seite 12 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

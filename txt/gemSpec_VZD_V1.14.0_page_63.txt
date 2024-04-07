@@ -1,0 +1,47 @@
+Spezifikation Verzeichnisdienst
+• Für jede Mail Adresse aus dem "mail" Attribut darf es
+nur einen Eintrag in Datenstruktur komLeData geben. Es
+dürfen in komLeData keine Mail Adressen referenziert
+werden, die nicht im übergeordneten "mail" Attribut
+enthalten sind.
+• Wenn eine Mail Adresse gelöscht wird, muss auch ihr
+komLeData Eintrag gelöscht werden.
+Geschrieben wird immer die gesamte Liste. Für
+Änderungen muss erst der aktuelle Eintrag gelesen
+werden und nach Änderung in der Liste der gesamte
+Eintrag wieder geschrieben werden.
+• Beispiel für den Wert eines komLeData Eintrags:
+{"mail": "erik.mustermann@hrstdomain.kim.telematik";
+"version": "1.5"}
+changeDateTi obligato Der VZD setzt dieses Attribut bei jeder Schreiboperation für den
+me risch Datensatz (Basisdaten) auf die aktuelle Zeit. Format
+entsprechend RFC 3339, section 5.6.
+[<=]
+Die Abbildung Abb_VZD_logisches_Datenmodell stellt die Datenstruktur des
+Verzeichnisdienstes als UML-Klassendiagramm dar. Die Basisdaten sind rot, die
+Fachdaten grün und die als Ergebnis der LDAP-Suche in Form einer flachen Liste
+gefundenen Einträge sind blau dargestellt. Zu jedem Attribut ist die Kardinalität in
+eckigen Klammern angegeben.
+Unter dem Begriff SMC-B sind alle Ausprägungen zusammengefasst (SMC-B ORG, SMC-B
+KTR). Wenn eine Differenzierung erforderlich ist, wird die spezifische Ausprägung der
+SMC-B explizit beschrieben.
+In der folgenden Tabelle wird der Wertebereich für das Attribut Eintragstyp (in LDAP ==
+entryType) sowie das Mapping auf die ProfessionOID festgelegt.
+Tabelle 33: Tab_VZD_Mapping_Eintragstyp_und_ProfessionOID
+Eintragstyp Eintragstyp ProfessionOID (ProfessionItem)
+Bedeutung
+1 Berufsgruppe 1.2.276.0.76.4.30 (Ärztin/Arzt)
+1.3.6.1.4.1.24796.4.11.1 (Ärztin/Arzt)*
+1.2.276.0.76.4.31 (Zahnärztin/Zahnarzt)
+1.2.276.0.76.4.32 (Apotheker/-in)
+1.2.276.0.76.4.33 (Apothekerassistent/-in)
+1.2.276.0.76.4.34 (Pharmazieingenieur/-in)
+1.2.276.0.76.4.35 (pharmazeutisch-
+technische/-r Assistent/-in)
+1.2.276.0.76.4.36 (pharmazeutisch-
+kaufmännische/-r Angestellte)
+1.2.276.0.76.4.37 (Apothekenhelfer/-in)
+1.2.276.0.76.4.38 (Apothekenassistent/-in)
+1.2.276.0.76.4.39 (Pharmazeutische/-r
+gemSpec_VZD_V1.docx Spezifikation Seite 63 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

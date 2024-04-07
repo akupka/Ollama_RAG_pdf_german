@@ -1,0 +1,40 @@
+Spezifikation Verzeichnisdienst
+n/a professionOID n/a Verwendung gemäß
+Tab_VZD_Datenbeschreib
+ung
+n/a usage n/a Verwendung gemäß
+Tab_VZD_Datenbeschreib
+ung
+n/a description n/a
+timestamp n/a timestamp Datum und Zeit des
+Requests bzw. der
+Response
+variant n/a n/a
+HBA: Wenn
+variant == full,
+dann werden
+givenName und
+sn aus dem
+Zertifikat in die
+gleichnamigen
+LDAP Attribute
+übernommen.
+givenname n/a n/a
+surname n/a n/a
+commonName n/a n/a
+serviceData n/a n/a
+n/a n/a status
+4.2.1.2 Nutzung
+TIP1-A_5576 - Nutzer der Schnittstelle, TUC_VZD_0002 „add_Directory_Entry”
+Der Nutzer der Schnittstelle MUSS den technischen Use Case TUC_VZD_0002
+„add_Directory_Entry” gemäß Tabelle Tab_TUC_VZD_0002 umsetzen.
+Der SOAP-Requests MUSS gemäß Tab_VZD_Datenbeschreibung mit der Bedeutung
+entsprechenden Daten ausgefüllt sein.
+Tabelle 6: Tab_TUC_VZD_0002
+Name TUC_VZD_0002 „add_Directory_Entry”
+Beschreibung Diese Operation ermöglicht die Erzeugung von neuen
+Basisdaten.
+Bestehende Basisdaten werden überschrieben.
+Vorbedingungen keine
+gemSpec_VZD_V1.docx Spezifikation Seite 19 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

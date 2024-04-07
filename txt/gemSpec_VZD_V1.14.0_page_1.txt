@@ -1,0 +1,11 @@
+Elektronische Gesundheitskarte und Telematikinfrastruktur
+Spezifikation
+Verzeichnisdienst
+Version: 1.14.0
+Revision: 434138
+Stand: 31.01.2022
+Status: freigegeben
+Klassifizierung: öffentlich
+Referenzierung: gemSpec_VZD
+gemSpec_VZD_V1.docx Spezifikation Seite 1 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

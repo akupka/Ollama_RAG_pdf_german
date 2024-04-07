@@ -1,0 +1,42 @@
+Spezifikation Verzeichnisdienst
+faultcode 4202, faultstring: SOAP Request enthält Fehler
+Erkannte Fehler auf Transportprotokollebene müssen auf
+gematik SOAP Faults (Code 6 aus Tabelle Tab_Gen_Fehler
+aus [gemSpec_OM]) abgebildet werden. Zusätzlich
+müssen die generischen gematik SOAP-Faults
+Code 2: Verbindung zurückgewiesen
+Code 3: Nachrichtenschema fehlerhaft
+Code 4: Version Nachrichtenschema fehlerhaft
+unterstützt werden.
+[<=]
+4.2.3 Operation modify_Directory_Entry
+Diese Operation ändert die Daten eines bestehenden Basisdatensatzes im LDAP
+Verzeichnis.
+4.2.3.1 Umsetzung
+TIP1-A_5579 - VZD, Umsetzung modify_Directory_Entry
+Der VZD MUSS nach folgenden Vorgaben die Operation modify_Directory_Entry
+implementieren:
+1. Der zur Telematik-ID gehörende Basisdatensatz wird im LDAP Directory ermittelt.
+2. Die Daten im Basisdatensatz werden durch die Daten aus dem SOAP Request
+gemäß Tab_VZD_Daten-Transformation und Tab_VZD_Datenbeschreibung
+geändert.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0004 verwendet werden.
+[<=]
+4.2.3.2 Nutzung
+TIP1-A_5580 - Nutzer der Schnittstelle, TUC_VZD_0004
+„modify_Directory_Entry”
+Der Nutzer der Schnittstelle MUSS den technischen Use Case TUC_VZD_0004
+„modify_Directory_Entry” gemäß Tabelle Tab_TUC_VZD_0004 umsetzen. Der Webservice
+wird durch die Dokumente DirectoryMaintenance.wsdl und DirectoryMaintenance.xsd
+definiert.
+Der SOAP-Requests MUSS gemäß Tabelle VZD_TAB_modifyDirectoryEntry_Mapping mit
+der Bedeutung entsprechenden Daten ausgefüllt sein.
+Tabelle 8: Tab_TUC_VZD_0004
+Name TUC_VZD_0004 „modify_Directory_Entry”
+Beschreibung Diese Operation ermöglicht die Änderung von Basisdaten.
+Vorbedingungen keine
+Eingangsdaten SOAP-Request „modifyDirectoryEntry“
+Komponenten Nutzer der Schnittstelle, Verzeichnisdienst
+Ausgangsdaten SOAP-Response „responseMsg“
+gemSpec_VZD_V1.docx Spezifikation Seite 22 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

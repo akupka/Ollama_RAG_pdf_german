@@ -1,0 +1,44 @@
+Spezifikation Verzeichnisdienst
+4.3.4.2 Nutzung SOAP
+TIP1-A_5600 - FAD, TUC_VZD_0010 “modify_Directory_FA-Attributes (SOAP)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0010 “modify_Directory_FA-
+Attributes” gemäß Tabelle Tab_TUC_VZD_0010 umsetzen.
+Tabelle 19: Tab_TUC_VZD_0010
+Name modify_Directory_FA-Attributes
+Beschreibung Mit dieser Operation werden Fachdaten geändert.
+Vorbedingungen Keine.
+Eingangsdaten SOAP-Request „modifyDirectoryFAAttributes“
+Komponenten VZD, FAD
+Ausgangsdaten SOAP-Response „responseMsg“
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Falls noch keine TLS-Verbindung besteht, wird
+Verbindung eine aufgebaut.
+Der FAD authentisiert sich mit ID.FD.TLS-C.
+SOAP-Request Der FAD ruft die SOAP-Operation
+senden VZD:modifyDirectoryFAAttributes auf.
+SOAP- Die SOAP-Response VZD:responseMsg enthält
+Response den vzd:status.
+empfangen Im Fehlerfall wird eine gematik SOAP-Fault
+Response empfangen
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet
+(TCP, HTTP, TLS).
+Fehler bei der Verarbeitung des SOAP Requests werden als
+gematik SOAP-Fault versendet:
+faultcode 4331, faultstring: Operation fehlerhaft ausgeführt,
+Fachdaten konnten nicht geändert werden (Fehler im
+Verzeichnisdienst)
+faultcode 4312, faultstring: Basisdaten konnten nicht gefunden
+werden
+faultcode 4202, faultstring: SOAP Request enthält Fehler
+[<=]
+TIP1-A_5601-03 - FAD, KOM-LE_FA_Modify_Attributes
+Der FAD MUSS für die FA KOM-LE die Fachdaten nach VZD_TAB_KOM-
+LE_Modify_Attributes administrieren.
+Tabelle 20: VZD_TAB_KOM-LE_Attributes
+SOAP-Request Element LDAP-Directory
+Basisdatensatz Attribut
+VZD:timestamp wird nicht in das LDAP-
+Directory eingetragen
+VZD:telematikID
+gemSpec_VZD_V1.docx Spezifikation Seite 37 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

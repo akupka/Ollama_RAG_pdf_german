@@ -1,0 +1,44 @@
+Spezifikation Verzeichnisdienst
+Eingangsdaten REST-Request GET /DirectoryEntries
+operationId: read_Directory_Entry (siehe
+DirectoryAdministration.yaml)
+Parameter Beschreibung
+Parameter zur Alle im Datenmodell aufgeführten Felder
+Selektion der des Basiseintrags - insbesondere auch
+Verzeichniseinträge dataFromAuthority - können zur Suche
+genutzt werden.
+Die angegebenen Parameter werden zur
+Suche mit einem logischen UND verknüpft.
+Komponenten Nutzer der Schnittstelle, Verzeichnisdienst
+Ausgangsdaten REST-Response mit allen zu den Filterparametern passenden
+Verzeichniseinträgen. Die Verzeichniseinträge werden optional
+inklusive Zertifikatseinträgen und Fachdaten geliefert.
+Ablauf Der VZD sucht im LDAP-Verzeichnis die zu den Suchparametern
+passenden Verzeichniseinträge.
+Bei mehr als 100 gefundenen Einträgen werden nur 100 gefundene
+Einträge zurückgegeben.
+Wenn über den "holder"-Suchparameter nach eigenen
+Verzeichniseinträgen oder Verzeichniseinträgen ohne gesetztes
+"holder"-Attribut gesucht wird, MÜSSEN vom VZD über den Paging
+Mechanismus (entsprechend RFC2696 und Definition in
+DirectoryAdministration.yaml) alle Suchergebnisse - ohne
+Beschränkung auf 100 Einträge - zurückgegeben werden.
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet
+(TCP, HTTP, TLS) und in DirectoryAdministration.yaml mit
+spezifischen Fehlerbeschreibungen ergänzt.
+[<=]
+A_20402-02 - VZD, I_Directory_Administration,
+read_Directory_Entry_for_Sync, Paging, Berechtigung
+Der VZD MUSS für den Paging Mechanismus von Operation
+„read_Directory_Entry_for_Sync” sicherstellen:
+• Der "holder" Suchparameter muss den gleichen Wert enthalten wie der
+ACCESS_TOKEN claim scope.
+• Die pagingSize darf die Maximalgröße entsprechend TIP1-A_5552 nicht
+überschreiten.
+• Die Suchparameter dürfen sich während eines Pagings (mit mehreren
+Request/Response Sequenzen) nicht ändern (nur das "cookie" ändert sich).
+Bei Abweichungen von diesen Festlegungen MUSS der VZD mit einem Fehler (HTTP-
+Status-Code 403) antworten.
+[<=]
+gemSpec_VZD_V1.docx Spezifikation Seite 57 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

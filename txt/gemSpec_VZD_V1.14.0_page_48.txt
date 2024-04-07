@@ -1,0 +1,47 @@
+Spezifikation Verzeichnisdienst
+a. Ist ein Wert aus dem Request Attribut "holder" nicht gültig, MUSS der VZD die
+Operation mit HTTP-Status-Code 422 abweisen und die weitere Verarbeitung
+von diesem Request abbrechen.
+b. Sind alle Werte aus dem Request Attribut "holder" gültig, MUSS der VZD die
+Werte aus dem Request entnehmen und sie in das "holder" Attribut des
+Verzeichniseintrags übernehmen.
+[<=]
+Das Attribut "holder" wirkt für die Modifikationen der Basisdaten (die Prüfung des
+Attributs erfolgt nur für Operation modify_Directory_Entry), nicht auf Änderungen der
+Zertifikats- oder Fachdaten.
+A_21791-01 - VZD, Prüfung auf Typ der Zertifikate
+Der VZD MUSS beim Hinzufügen von Zertifikaten mit den Operationen
+„add_Directory_Entry” und "add_Directory_Entry_Certificate" den Typ der Zertifikate
+prüfen. Der VZD MUSS alle Operationen mit Zertifikaten ablehnen, die nicht vom
+Zertifikatstyp C.HCI.ENC oder C.HP.ENC (siehe [gemSpec_OID#Tab_PKI_405-01] sind
+oder nicht keyUsage = (!digitalSignature && keyEncipherment && dataEncipherment)
+(siehe [gemSpec_PKI]} GS-A_5532-01) gesetzt ist. Im Falle von unzulässigen
+Zertifikaten MUSS der VZD mit HTTP-Statuscode 422
+(attributeName="userCertificate", attributeError="erläuternder Fehlertext") antworten
+und darf die gesamte Operation nicht ausführen. [<=]
+A_21790-01 - VZD, Prüfung auf Gültigkeit der Zertifikate in der korrekten PKI-
+Umgebung
+Der VZD MUSS beim Hinzufügen von Zertifikaten in der PKI-Umgebung PU mit den
+Operationen „add_Directory_Entry” und "add_Directory_Entry_Certificate" die Gültigkeit
+der Zertifikate für diese PKI-Umgebung (PU) prüfen (TUC_PKI_018 mit erfolgreichem
+Status der Prüfung mit Prüfparametern Offline-Modus=nein; Prüfmodus=OCSP;
+TOLERATE_OCSP_FAILURE=false ). Die Gültigkeit wird anhand der CA und Prüfung gegen
+PU-TSL durchgeführt. In der PKI-Umgebung PU dürfen nur die Zertifikate akzeptiert
+werden, die in dieser Umgebung gültig sind. Gültige Zertifikate aus anderen Umgebungen
+müssen abgelehnt werden. In den PKI-Testumgebungen (RU, TU) erfolgt keine Prüfung.
+[<=]
+A_21824 - VZD, I_Directory_Administration, stateOrProvinceName Prüfung
+Der VZD MUSS vor Ausführung der Operationen „add_Directory_Entry” und
+"modify_Directory_Entry"den Inhalt von Parameter stateOrProvinceName des Operation
+Requests gegen die gültigen Werte entsprechend [gemILF_Pflege_VZD#Tabelle
+TAB_VZD_Wertebereiche_der_Attribute] prüfen, wenn es sich um eine deutsche Adresse
+handelt (countryCode = DE). Im Falle von ungültigen Werten MUSS der VZD mit HTTP-
+Statuscode 422 (attributeName="stateOrProvinceName" , attributeError="erläuternder
+Fehlertext") antworten und darf die Operation nicht ausführen. [<=]
+4.6.1.2.2 GET
+Diese Operation liest Verzeichniseinträge aus dem LDAP-Verzeichnis.
+A_18449-03 - VZD, I_Directory_Administration, read_Directory_Entry
+Der VZD MUSS Operation „read_Directory_Entry” gemäß Tabelle Tab_VZD
+„read_Directory_Entry” umsetzen.
+gemSpec_VZD_V1.docx Spezifikation Seite 48 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

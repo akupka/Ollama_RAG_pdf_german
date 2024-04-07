@@ -1,0 +1,41 @@
+Spezifikation Verzeichnisdienst
+uid Optionaler Parameter.
+Die „uid“ identifiziert einen
+Verzeichnisdienst_Eintrag
+(Abb_VZD_logisches_Datenmodell). Dieser
+Parameter selektiert alle Zertifikatseinträge
+dieses Verzeichnisdiensteintrags.
+certificateEntryID Optionaler Parameter.
+Dieser Parameter identifiziert einen
+Zertifikatseintrag
+(Abb_VZD_logisches_Datenmodell dn.cn
+von Certificate).
+telematikID Optionaler Parameter.
+Dieser Parameter selektiert alle
+Zertifikatseinträge mit dieser TeleamtikID.
+Komponenten Nutzer der Schnittstelle, Verzeichnisdienst
+Ausgangsdaten REST-Response mit allen zu den Filter Parametern passenden
+Zertifikatseinträgen.
+Ablauf Der VZD sucht im LDAP Verzeichnis die zu den Such-Parametern
+passenden Zertifikatseinträge.
+Bei mehr als 100 gefundenen Einträgen werden nur 100
+gefundenen Einträge zurückgegeben.
+Fehlerfälle Es werden die protokollspezifischen Fehlermeldungen verwendet
+(TCP, HTTP, TLS) und in DirectoryAdministration.yaml mit
+spezifischen Fehlerbeschreibungen ergänzt.
+[<=]
+4.6.1.3.3 DELETE
+Diese Operation löscht einen Zertifikatseintrag.
+A_18455 - VZD, I_Directory_Administration,
+delete_Directory_Entry_Certificate
+Der VZD MUSS Operation „delete_Directory_Entry_Certificate” gemäß Tabelle Tab_VZD
+„delete_Directory_Entry_Certificate” umsetzen.
+Tabelle 30: Tab_VZD „delete_Directory_Entry_Certificate”
+Name delete_Directory_Entry_Certificate
+Beschreibung Diese Operation ermöglicht die Löschung eines
+Zertifikatsseintrags im LDAP-Verzeichnis.
+Eingangsdaten REST-Request
+DELETE
+/DirectoryEntries/{uid}/Certificates/{certificateEntryID}
+gemSpec_VZD_V1.docx Spezifikation Seite 55 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

@@ -1,0 +1,41 @@
+Spezifikation Verzeichnisdienst
+Tabelle 14: VZD_TAB_KOM-LE_Attributes
+SOAP-Request Element LDAP-Directory
+Basisdatensatz Attribut
+VZD:timestamp wird nicht in das LDAP-Directory eingetragen
+VZD:telematikID
+VZD:KOM-LE-EMail-Address mail
+VZD:version KOM-LE-Version
+[<=]
+4.3.2.3 Umsetzung LDAPv3
+TIP1-A_5593 - VZD, Umsetzung add_Directory_FA-Attributes (LDAPv3)
+Der VZD MUSS nach folgenden Vorgaben die Operation add_Directory_FA-Attributes
+implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request mit einer Fehlermeldung beendet.
+2. Ein noch nicht existierender Fachdatensatz zur Telematik-ID wird im VZD neu
+angelegt.
+3. Der FAD darf nur die zu seinem Dienst gehörenden Fachdaten schreiben.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0007 verwendet werden.
+[<=]
+4.3.2.4 Nutzung LDAPv3
+TIP1-A_5594 - FAD, TUC_VZD_0007 “add_Directory_FA-Attributes (LDAPv3)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0007 „add_Directory_FA-
+Attributes(LDAPv3)” gemäß Tabelle Tab_TUC_VZD_0007 unterstützen.
+Tabelle 15: Tab_TUC_VZD_0007
+Name add_Directory_FA-Attributes(LDAPv3)
+Beschreibung Mit dieser Operation werden Fachdaten zu einem
+bestehenden Eintrag zugefügt.
+Vorbedingungen Der LDAPS-Verbindungsaufbau muss erfolgreich
+durchgeführt sein.
+Eingangsdaten Add-Request gemäß [RFC4511]#4.7 und
+Informationsmodell (Abb_VZD_logisches_Datenmodell)
+Komponenten LDAP Client des FAD, Verzeichnisdienst
+Ausgangsdaten gemäß [RFC4511]#4.7
+Standardablauf Aktion Beschreibung
+Add Request Der LDAP Client des FAD sendet den Add-
+senden Request gemäß [RFC4511]#4.7 an den
+VZD. Die RFCs [RFC4510], [RFC4511],
+[RFC4513], [RFC4514], [RFC4515],
+gemSpec_VZD_V1.docx Spezifikation Seite 30 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

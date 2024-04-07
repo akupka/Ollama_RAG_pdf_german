@@ -1,0 +1,42 @@
+Spezifikation Verzeichnisdienst
+Der VZD MUSS einen OAuth2-Dienst bereitstellen. Dieser Dienst MUSS die Clients der
+Schnittstelle I_Directory_Application_Maintenance anhand ihrer Client Credentials und
+Umgebung (RU/TU/PU) authentisieren und ihnen ein AccessToken entsprechend [ RFC
+6750] ausstellen. Das AccessToken muss im "sub" claim den Identifier des Clients
+enthalten.[<=]
+A_21467 - VZD, I_Directory_Administration, Prüfung AccessToken
+Der VZD MUSS das vom Client übergebene AccessToken auf Gültigkeit für
+Schnittstelle I_Directory_Application_Maintenance und Umgebung (RU/TU/PU) prüfen.
+Bei negativem Ergebnis muss die Operation mit HTTP Fehler 401 Unauthorized
+abgebrochen werden.
+[<=]
+4.3.1 Operation getInfo
+Diese Operation liefert die Metadaten der Schnittstelle
+I_Directory_Application_Maintenance.
+4.3.1.1 Umsetzung REST
+A_21788 - VZD, Umsetzung I_Directory_Application_Maintenance getInfo
+(REST)
+Der VZD MUSS nach folgenden Vorgaben die Operation getInfo implementieren:
+In dem Rückgabewerten müssen die aktuell gültigen Metainformationen für Schnittstelle
+I_Directory_Application_Maintenance zurückgegeben werden. Insbesondere muss
+1. Der Parameter version die aktuelle Version der Schnittstelle enthalten (entspricht
+info.version der Schnittstellendefinition DirectoryApplicationMaintenance.yaml)
+2. Der Parameter title den Titel der Schnittstelle enthalten (entspricht info.title der
+Schnittstellendefinition DirectoryApplicationMaintenance.yaml)
+3. Der Parameterstruktur contact die Kontaktinformationen für die Schnittstelle
+enthalten. Über die - mit contact.url adressierte - Web-Seite muss die aktuell
+verwendete Schnittstellendefinition DirectoryApplicationMaintenance.yaml
+abrufbar sein.
+[<=]
+In dem Dokument unter dieser URL muss ein Link zum Download der aktuell genutzten
+YAML-Datei dieser Schnittstelle hinterlegt sein.
+4.3.1.2 Nutzung REST
+A_21787 - VZD, I_Directory_Application_Maintenance, getInfo
+Der VZD MUSS die Operation „getInfo” gemäß Tabelle Tab_VZD
+„I_Directory_Application_Maintenance-getInfo” umsetzen.
+Tabelle 11: Tab_VZD „I_Directory_Application_Maintenance-getInfo”
+Name getInfo
+Beschreibung Liefert die Metadaten (unter anderem aus dem InfoObject) dieser
+OpenAPI-Spezifikation und ergänzt sie.
+gemSpec_VZD_V1.docx Spezifikation Seite 27 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

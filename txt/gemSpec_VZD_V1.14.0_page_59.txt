@@ -1,0 +1,17 @@
+Spezifikation Verzeichnisdienst
+5 Datenmodell
+TIP1-A_5607-07 - VZD, logisches Datenmodell
+Der VZD MUSS das logische Datenmodell nach Abb_VZD_logisches_Datenmodell und
+Tab_VZD_Datenbeschreibung implementieren. Es wird keine Vorgabe an die technische
+Ausprägung des Datenmodells gemacht.
+Der VZD MUSS sicherstellen, dass ein Eintrag nur Zertifikate aus dem Vertrauensraum
+der TI mit gleicher Telematik-ID enthält.
+Abbildung 2: Abb_VZD_logisches_Datenmodell
+Tabelle 32: Tab_VZD_Datenbeschreibung
+LDAP-Directory Pflichtfeld Erläuterung
+Attribut ?
+givenName optional HBA-Eintrag: Bezeichner: Vorname, wird vom VZD aus dem Zertifikat
+übernommen.
+SMC-B-Eintrag: wird nicht verwendet
+gemSpec_VZD_V1.docx Spezifikation Seite 59 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

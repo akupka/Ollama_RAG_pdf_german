@@ -1,0 +1,47 @@
+Spezifikation Verzeichnisdienst
+im "sub" claim den Identifier des Clients enthalten. Die Anfrage des Clients MUSS nach
+erfolgreicher Authentisierung durch ein Redirect wieder zur VZD
+I_Directory_Administration Schnittstelle weitergeleitet werden.
+[<=]
+A_18376 - VZD, I_Directory_Administration, Prüfung AccessToken
+Der VZD MUSS das vom Client übergebene AccessToken auf Gültigkeit für
+Schnittstelle I_Directory_Administration prüfen. Bei negativem Ergebnis muss die
+Operation mit HTTP Fehler 401 Unauthorized abgebrochen werden.
+[<=]
+A_18471-01 - VZD, I_Directory_Administration, Datenquelle
+Der VZD MUSS bei den Operationen add_Directory_Entry und
+modify_Directory_Entry das LDAP-Directory-Attribut dataFromAuthority auf den Wert
+TRUE setzen und bei allen anderen Operationen unverändert belassen.
+[<=]
+A_18735 - VZD, Disable I_Directory_Maintenance, wenn dataFromAuthority
+TRUE
+Der VZD DARF Änderungen an VZD-Einträgen über die Schnittstelle
+I_Directory_Maintenance NICHT zulassen, wenn an dem betroffenen VZD-Eintrag das
+Attribut dataFromAuthority auf TRUE gesetzt ist.
+[<=]
+A_18472-01 - VZD, I_Directory_Administration, Doubletten
+Der VZD MUSS bei den Operationen add_Directory_Entry und
+modify_Directory_Entry prüfen, ob die Operation eine Doublette im LDAP-Verzeichnis
+erzeugt und in diesem Fall die Operation mit HTTP-Fehlercode “400 Bad Request“
+ablehnen. Zur Prüfung auf eine potentielle Dublette MUSS der VZD alle LDAP-Directory-
+Attribute des zu erzeugenden Basisdatensatzes (Verzeichnisdienst_Eintrag ohne
+Certificate und Fachdaten) jedoch ohne den Distinguished Name heranziehen.
+[<=]
+A_18602 - VZD, I_Directory_Administration, keine Datenänderung über
+Maintenance Schnittstelle
+Der VZD MUSS Änderungen an Basisdatensätzen und Zertifikatseinträgen (Certificate in
+Abb_VZD_logisches_Datenmodell) über andere Schnittstellen verhindern, wenn für den
+jeweiligen Eintrag Daten über die Schnittstelle I_Directory_Administration eingetragen
+wurden (LDAP-Directory Attribut dataFromAuthority == TRUE).
+Nicht erlaubte Änderungen MUSS der VZD mit faultcode 4202 (faultstring: SOAP Request
+enthält Fehler) ablehnen.[<=]
+4.6.1.1 I_Directory_Administration - Lesen der Metadaten
+Über Operation getInfo können die Metadaten der Schnittstelle
+I_Directory_Administration gelesen werden.
+4.6.1.1.1 GET
+Diese Operation liefert die Metadaten der Schnittstelle I_Directory_Administration.
+A_21786 - VZD, I_Directory_Administration, getInfo
+Der VZD MUSS Operation „getInfo” gemäß Tabelle Tab_VZD „I_Directory_Administration-
+Info” umsetzen.
+gemSpec_VZD_V1.docx Spezifikation Seite 45 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

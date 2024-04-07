@@ -1,0 +1,41 @@
+Spezifikation Verzeichnisdienst
+Eingangsdaten REST-Request PUT /DirectoryEntries/{uid}/baseDirectoryEntries
+operationId: modify_Directory_Entry (siehe
+DirectoryAdministration.yaml)
+Parameter Beschreibung
+uid Die „uid“ identifiziert den
+Verzeichnisdienst_Eintrag
+(Abb_VZD_logisches_Datenmodell)
+welcher aktualisiert wird.
+displayName Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+otherName Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+streetAddress Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+postalCode Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+localityName Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+stateOrProvienceName Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+title Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+organization Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+specialization Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+domainID Kann optional angegeben werden und
+überschreibt den Wert im selektierten
+Verzeichniseintrag.
+gemSpec_VZD_V1.docx Spezifikation Seite 50 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

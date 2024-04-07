@@ -1,0 +1,18 @@
+Spezifikation Verzeichnisdienst
+1.13.1 20.04.21 Anpassung C_10533 aus gematik
+KIM_Maintenance_21.1 vervollständigt (TIP1-
+A_5586 entfernt)
+1.13.2 11.10.21 ab Release "Konnektor PTV 5.0.2: Maintenance gematik
+21.5" (Sept. 2021) führt die gematik eine
+stufenweise Umbenennung folgender Begriffe
+durch:
+aus "aAdG-NetG" wird "WANDA Basic",
+aus "aAdG" und "aAdG-NetG-TI" wird "WANDA
+Smart"
+(nähere Informationen finden Sie unter
+https://fachportal.gematik.de/)
+1.14.0 31.01.22 Anpassung gemäß Änderungsliste VZD- gematik
+Maintenance 21.1 (C_10737) und VZD-
+Maintenance 21.2 (C_10918)
+gemSpec_VZD_V1.docx Spezifikation Seite 3 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

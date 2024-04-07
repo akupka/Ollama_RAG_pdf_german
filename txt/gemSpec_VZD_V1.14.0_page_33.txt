@@ -1,0 +1,39 @@
+Spezifikation Verzeichnisdienst
+einen VZD-Eintrag angehängt wird. Hierzu MUSS er vor einer Eintragung einer KOM-LE
+Adresse prüfen, ob diese bereits im VZD hinterlegt ist. Ist sie bereits hinterlegt, MUSS
+der VZD mit HTTP-Statuscode 422 (attributeName="mail" , attributeError="erläuternder
+Fehlertext") antworten und darf die Operation nicht ausführen.
+[<=]
+4.3.3 Operation delete_Directory_FA-Attributes
+Diese Operation löscht einen Fachdatensatz.
+4.3.3.1 Umsetzung SOAP
+TIP1-A_5595 - VZD, Umsetzung delete_Directory_FA-Attributes
+Der VZD MUSS nach folgenden Vorgaben die Operation delete_Directory_ FA-Attributes
+implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request mit einem gematik SOAP-Fault beendet:
+faultcode: 4312,
+faultstring: Basisdaten konnten nicht gefunden werden.
+2. Ein zur Telematik-ID gehörender Fachdatensatz wird gelöscht.
+3. Ein nicht existierender Fachdatensatz zur Telematik-ID führt zu keiner Aktion.
+Es müssen die Fehlermeldungen gemäß Tab_TUC_VZD_0008 verwendet werden.
+[<=]
+4.3.3.2 Nutzung SOAP
+TIP1-A_5596 - FAD, TUC_VZD_0008 “delete_Directory_FA-Attributes (SOAP)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0008 “delete_Directory_FA-
+Attributes” gemäß Tabelle Tab_TUC_VZD_0008 umsetzen.
+Tabelle 16: Tab_TUC_VZD_0008
+Name delete_Directory_FA-Attributes
+Beschreibung Mit dieser Operation wird ein Fachdaten-Eintrag gelöscht.
+Vorbedingungen Keine.
+Eingangsdaten SOAP-Request „deleteDirectoryFAAttributes“
+Komponenten VZD, FAD
+Ausgangsdaten SOAP-Response „responseMsg“
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Falls noch keine TLS-Verbindung besteht, wird
+Verbindung eine aufgebaut.
+Der FAD authentisiert sich mit ID.FD.TLS-C.
+SOAP-Request Der FAD ruft die SOAP-Operation
+senden VZD:deleteDirectoryFAAttributes auf.
+gemSpec_VZD_V1.docx Spezifikation Seite 33 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

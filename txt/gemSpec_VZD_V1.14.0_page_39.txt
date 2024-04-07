@@ -1,0 +1,40 @@
+Spezifikation Verzeichnisdienst
+Varianten/Alternativen keine
+Zustand nach Das Ergebnis der Operation liegt im LDAP Client des FAD
+erfolgreichem Ablauf vor.
+Fehlerfälle Zur Behandlung auftretender Fehlerfälle werden
+Fehlermeldungen gemäß [RFC4511]#Appendix A
+verwendet.
+[<=]
+4.3.4.5 Umsetzung REST
+A_21462 - VZD, Umsetzung modify_Directory_FA-Attributes (REST)
+Der VZD MUSS nach folgenden Vorgaben die Operation modify_Directory_ FA-Attributes
+implementieren:
+1. Wenn kein zur Telematik-ID gehörender Basisdatensatz gefunden wurde, wird der
+Request mit einem HTTP-Statuscode beendet:
+HTTP-Statuscode: 404
+2. Ein bereits zur Telematik-ID gehörender Fachdatensatz (FADx
+in Abb_VZD_logisches_Datenmodell) des authentifizierten Fachdienstanbieters
+wird überschrieben.
+3. Ein nicht existierender Fachdatensatz zur Telematik-ID führt zu keiner Aktion und
+HTTP-Statuscode: 404 im Response.
+[<=]
+4.3.4.6 Nutzung REST
+A_21463 - FAD, TUC_VZD_0014 “modify_Directory_FA-Attributes (REST)”
+Der FAD MUSS den technischen Use Case TUC_VZD_0014 “modify_Directory_FA-
+Attributes” gemäß Tabelle Tab_TUC_VZD_0014 umsetzen.
+Tabelle 33: Tab_TUC_VZD_0014
+Name modify_Directory_FA-Attributes
+Beschreibung Mit dieser Operation wird ein Fachdaten-Eintrag geändert.
+Vorbedingungen Keine.
+Eingangsdaten REST-Request „modify_Directory_FA-Attributes“
+Komponenten VZD, FAD
+Ausgangsdaten REST-Response
+Standardablauf Aktion Beschreibung
+Aufbau TLS- Falls noch keine TLS-Verbindung besteht, wird
+Verbindung eine aufgebaut.
+Der FAD authentisiert sich mit ID.FD.TLS-C.
+REST-Request Der FAD ruft die REST-Operation
+senden modify_Directory_FA-Attributes auf.
+gemSpec_VZD_V1.docx Spezifikation Seite 39 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022

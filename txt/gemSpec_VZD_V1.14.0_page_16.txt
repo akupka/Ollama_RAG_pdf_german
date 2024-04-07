@@ -1,0 +1,44 @@
+Spezifikation Verzeichnisdienst
+Der VZD MUSS die Schnittstelle I_Directory_Maintenance gemäß Tabelle
+Tab_VZD_Schnittstelle_I_Directory_Maintenance anbieten.
+Tabelle 4: Tab_VZD_Schnittstelle_I_Directory_Maintenance
+Name I_Directory_Maintenance
+Version wird im Produkttypsteckbrief des VZD definiert
+Operationen Name Kurzbeschreibung
+add_Directory_Entry Erzeugung eines Basisdaten-
+Verzeichniseintrages oder Überschreiben
+eines bestehenden Verzeichniseintrages.
+read_Directory_Entry Abfrage aller Basis- und Fachdaten eines
+Verzeichniseintrages.
+modify_Directory_Entry Änderung eines Basisdaten-
+Verzeichniseintrages.
+delete_Directory_Entry Löschung eines Verzeichniseintrages
+(Basisdaten und Fachdaten).
+[<=]
+TIP1-A_5572 - VZD, I_Directory_Maintenance, TLS-gesicherte Verbindung
+Der VZD MUSS die Schnittstelle I_Directory_Maintenance durch Verwendung von TLS mit
+beidseitiger Authentisierung sichern.
+Der VZD muss sich mit der Identität ID.ZD.TLS-S authentisieren.
+Der VZD muss das vom FAD übergebene AUT-Zertifikat C.FD.TLS-C hinsichtlich OCSP-
+Gültigkeit und Übereinstimmung mit einem Zertifikat eines zur Nutzung dieser
+Schnittstelle registrierten Fachdienstes prüfen. Bei negativem Ergebnis wird der
+Verbindungsaufbau abgebrochen.
+[<=]
+TIP1-A_5574 - VZD und Nutzer der Schnittstelle I_Directory_Maintenance,
+WebService
+Der VZD und Nutzer der Schnittstelle MÜSSEN die Schnittstelle I_Directory_Maintenance
+als SOAP-Webservice über HTTPS implementieren. Der Webservice wird durch die
+Dokumente DirectoryMaintenance.wsdl und DirectoryMaintenance.xsd definiert.
+[<=]
+4.2.1 Operation add_Directory_Entry
+Diese Operation legt einen neuen Basisdatensatz an oder überschreibt einen bestehenden
+Datensatz im LDAP Verzeichnis.
+4.2.1.1 Umsetzung
+TIP1-A_5575 - VZD, Umsetzung add_Directory_Entry
+Der VZD MUSS nach folgenden Vorgaben die Operation add_Directory_Entry
+implementieren:
+1. Ein bereits zur Telematik-ID gehörender Basisdatensatz wird gelöscht und neu
+angelegt.
+2. Existiert noch kein Basisdatensatz zur Telematik-ID wird ein neuer angelegt.
+gemSpec_VZD_V1.docx Spezifikation Seite 16 von 72
+Version: 1.14.0 © gematik – öffentlich Stand: 31.01.2022
