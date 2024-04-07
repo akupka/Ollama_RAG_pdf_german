@@ -8,7 +8,7 @@ Das "chunken" von Texten wie Matt Williams das macht ist Cool, er Teilt die Text
 
 Der RAG Teil wurde von https://github.com/technovangelist/videoprojects/tree/main/2024-04-04-build-rag-with-python übernommen
 
-1. Instalation der requirements: pip install -r requirements.txt
+1. Installation der requirements: pip install -r requirements.txt
 1a. evtl.noch nltk runterladen https://www.nltk.org/data.html mit impnltk.py
 2. Starten der ChromaDB in einer eigenen Terminal Sitzung: chroma run --host localhost --port 8000 --path ../vectordb-stores/chromadb
 3. pdf Umwandeln mit dem Skript pdf2text
