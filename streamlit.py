@@ -15,12 +15,18 @@ mainmodel = getconfig()["mainmodel"]
 chroma = chromadb.HttpClient(host="localhost", port=8000)
 collection = chroma.get_or_create_collection("buildragwithpython")
 
+st.title("💬 Gematik Test Bot")
+st.session_state.selected_model = st.selectbox(
+    "Please select the model:", [model["name"] for model in ollama.list()["models"]])
+mainmodel=st.session_state.selected_model
+
 # Streamlit
 if "messages" not in st.session_state:
     st.session_state["messages"] = [{"role": "assistant", "content": "Wie kann ich helfen ?"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
+
 
 # Eingabeaufforderung anzeigen und verarbeiten
 if prompt := st.chat_input("Wie kann ich helfen ?"):
@@ -32,11 +38,11 @@ if prompt := st.chat_input("Wie kann ich helfen ?"):
     stream = ollama.generate(model=mainmodel, prompt=modelquery, stream=True)
 
     # Antworten anzeigen
-    #for chunk in stream:
-    #    print(chunk)
-    #    if chunk["response"]:
-    #        result = chunk['response']
-    st.chat_message("assistant").write(stream)
+    for chunk in stream:
+        print(chunk)
+        if chunk["response"]:
+            result = chunk['response']
+    #st.chat_message("assistant").write(stream)
     
 
     

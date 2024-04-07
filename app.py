@@ -1,25 +1,59 @@
 import streamlit as st
-from ollama import Ollama
+import ollama
+import chromadb
+from utilities import getconfig
+import os
 
-# Initialisiere Ollama
-ollama = Ollama()
+os.environ["OLLAMA_HOST"] = "192.168.178.39"
 
-# Seitentitel
-st.set_page_config(page_title="Ollama Chat")
+# Lade Konfigurationen
+embedmodel = getconfig()["embedmodel"]
+#mainmodel = getconfig()["mainmodel"]
 
-# Seitenüberschrift
-st.title("Ollama Chat")
+# Verbindung zu ChromaDB herstellen
+chroma = chromadb.HttpClient(host="localhost", port=8000)
+collection = chroma.get_or_create_collection("buildragwithpython")
 
-# Auswahl des Ollama-Modells
-model = st.selectbox("Wähle ein Ollama-Modell aus:", ollama.list_models())
+st.title("💬 llama2 (7B) Chatbot")
+st.session_state.selected_model = st.selectbox(
+    "Please select the model:", [model["name"] for model in ollama.list()["models"]])
+mainmodel=st.session_state.selected_model
 
-# Eingabefeld für Benutzernachricht
-user_input = st.text_area("Deine Nachricht:", height=100)
+if "messages" not in st.session_state:
+    st.session_state["messages"] = [{"role": "assistant", "content": "Wie kann ich helfen ?"}]
 
-# Sende-Button
-if st.button("Senden"):
-    # Generiere Antwort mit Ollama
-    response = ollama.show(model, user_input)
-    
-    # Zeige Antwort an
-    st.markdown(f"**Ollama:** {response}")
+### Write Message History
+for msg in st.session_state.messages:
+    if msg["role"] == "user":
+        st.chat_message(msg["role"], avatar="🧑‍💻").write(msg["content"])
+    else:
+        st.chat_message(msg["role"], avatar="🤖").write(msg["content"])
+
+## Generator for Streaming Tokens
+def generate_response():
+    response = ollama.chat(model=mainmodel, stream=True, messages=st.session_state.messages)
+    for partial_resp in response:
+        token = partial_resp["message"]["content"]
+        st.session_state["full_message"] += token
+        yield token
+
+if prompt := st.chat_input("Wie kann ich helfen ?"):
+    queryembed = ollama.embeddings(model=embedmodel, prompt=prompt)['embedding']
+    relevantdocs = collection.query(query_embeddings=[queryembed], n_results=5)
+    doc1 = relevantdocs["documents"][0]
+    metadata = relevantdocs["metadatas"][0]
+    filename_with_newline = metadata[0]['source'].split('/')[-1]
+    filename = filename_with_newline.strip()
+    docs = "\n\n".join(doc1)
+    modelquery = f"{prompt} - Beantworte die Frage nur auf deutsch nutze den folgenden Text als einzige Quelle {docs} wenn du die Frage nicht beantworten kannst schreibe keine Ahnung"
+    #stream = ollama.generate(model=mainmodel, prompt=modelquery, stream=True)
+ 
+
+    st.session_state.messages.append({"role": "user", "content": modelquery})
+    st.chat_message("user", avatar="🧑‍💻").write(prompt)
+    st.session_state["full_message"] = ""
+    st.chat_message("assistant", avatar="🤖").write_stream(generate_response)
+    st.session_state.messages.append({"role": "assistant", "content": st.session_state["full_message"]})
+    st.chat_message("assistant", avatar="🤖").write(f" (Quelle: {filename})")
+    st.session_state.messages = [{"role": "assistant", "content": "Wie kann ich helfen?"}]
+ 
