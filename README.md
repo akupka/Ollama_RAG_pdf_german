@@ -8,19 +8,20 @@ Das "chunken" von Texten wie Matt Williams das macht ist Cool, er Teilt die Text
 
 Der RAG Teil wurde von https://github.com/technovangelist/videoprojects/tree/main/2024-04-04-build-rag-with-python übernommen
 
-1. Instalation der requirements: pip install -r requirements.txt
+1. Installation der requirements: pip install -r requirements.txt
 1a. evtl.noch nltk runterladen https://www.nltk.org/data.html mit impnltk.py
-2. Starten der ChromaDB in einer eigenen Terminal Sitzung: chroma run --host localhost --port 8000 --path ../vectordb-stores/chromadb
-3. pdf Umwandeln mit dem Skript pdf2text
-4. offen ist noch das die txt Dateien in diese Liste aufgeführt werden müssen sourcedocs.txt
-5. Die Text mit python3 import.py in die Chroma DB importieren
-6. Suchen auf der Konsole mit: python3 search.py <yoursearch>
-7. ALternativ dazu ein Chat mit streamlit run app.py 
+3. Starten der ChromaDB in einer eigenen Terminal Sitzung: chroma run --host localhost --port 8000 --path ../vectordb-stores/chromadb
+4. pdf Umwandeln mit dem Skript pdf2text
+5. offen ist noch das die txt Dateien in diese Liste aufgeführt werden müssen sourcedocs.txt
+6. Die Text mit python3 import.py in die Chroma DB importieren
+7. Suchen auf der Konsole mit: python3 search.py <yoursearch>
+8. Alternativ dazu ein Chat mit streamlit run app.py 
 
 Bei der import.py muss man die Zeile 7
 chroma.delete_collection("buildragwithpython")
 beim ersten start deaktivieren oder auch sonst wenn man die Daten nicht löschen möchte
 
+<<<<<<< HEAD
 # Start der App
 1. in einer Shell die Chroma DB mit:
 chroma run --host localhost --port 8000 --path ../vectordb-stores/chromadb
@@ -34,3 +35,8 @@ ToDo:
 * Embedding mit ollama snowflake-arctic-embed ausprobieren
 * phi3 mini als Model testen
 * Prompt optimieren
+=======
+Bei der Streamlit kann man verschiedene Ollama Modelle ausprobieren
+
+zu 3. pdf Dateien sind z.T. zickig, hier ist absichtlich ein Zwischenschritt damit man die txt überpüfen kann ob wirklich alle notwendigen Inhalte aus der pdf nach txt umgewandelt wurden.
+>>>>>>> ccee7af4192dbabeaeaee1731316d3f9c3f00724
