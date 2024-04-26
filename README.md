@@ -21,8 +21,7 @@ Bei der import.py muss man die Zeile 7
 chroma.delete_collection("buildragwithpython")
 beim ersten start deaktivieren oder auch sonst wenn man die Daten nicht löschen möchte
 
-<<<<<<< HEAD
-# Start der App
+### Start der App
 1. in einer Shell die Chroma DB mit:
 chroma run --host localhost --port 8000 --path ../vectordb-stores/chromadb
 2. in einer anderen Shell die Streamlit APP
@@ -30,7 +29,7 @@ streamlit run app.py
 
 Bei der Streamlit kann man verschiedene Ollama Modelle ausprobieren
 
-ToDo:
+### ToDo:
 * PDF besser in Text umwandeln mit https://github.com/VikParuchuri/marker
 * Embedding mit ollama snowflake-arctic-embed ausprobieren
 * phi3 mini als Model testen
