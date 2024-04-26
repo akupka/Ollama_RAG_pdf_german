@@ -22,3 +22,9 @@ chroma.delete_collection("buildragwithpython")
 beim ersten start deaktivieren oder auch sonst wenn man die Daten nicht löschen möchte
 
 Bei der Streamlit kann man verschiedene Ollama Modelle ausprobieren
+
+ToDo:
+* PDF besser in Text umwandeln mit https://github.com/VikParuchuri/marker
+* Embedding mit ollama snowflake-arctic-embed ausprobieren
+* phi3 mini als Model testen
+* Prompt optimieren
